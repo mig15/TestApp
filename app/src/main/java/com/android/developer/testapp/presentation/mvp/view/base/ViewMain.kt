@@ -5,4 +5,5 @@ import com.android.developer.testapp.presentation.adapter.recycler.ItemType
 interface ViewMain : MvpView {
 
     fun notifyData(list: List<ItemType>)
+    fun showMessage(msg: String)
 }

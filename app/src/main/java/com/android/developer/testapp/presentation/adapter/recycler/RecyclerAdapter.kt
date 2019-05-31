@@ -31,7 +31,6 @@ class RecyclerAdapter(private val data: MutableList<ItemType> = arrayListOf()) :
     }
 
     fun notifyData(list: List<ItemType>) {
-        data.clear()
         data.addAll(list)
         notifyDataSetChanged()
     }

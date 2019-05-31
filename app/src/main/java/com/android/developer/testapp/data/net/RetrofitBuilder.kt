@@ -1,5 +1,6 @@
 package com.android.developer.testapp.data.net
 
+import com.android.developer.testapp.common.Constants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -9,13 +10,11 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
 
-    private val baseUrl = "http://85.143.218.128:10000/"
-
     val serverApi: ServerApi
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(getInterceptor())

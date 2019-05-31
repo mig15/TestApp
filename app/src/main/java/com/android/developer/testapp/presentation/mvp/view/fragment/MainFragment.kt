@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.developer.testapp.R
+import com.android.developer.testapp.data.repository.RepositoryImpl
+import com.android.developer.testapp.domain.interactor.MainInteractor
 import com.android.developer.testapp.presentation.mvp.presenter.PresenterMain
 import com.android.developer.testapp.presentation.mvp.view.base.ViewMain
 
@@ -17,7 +19,9 @@ class MainFragment : Fragment(), ViewMain {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        presenter = PresenterMain()
+        val repository = RepositoryImpl()
+        val case = MainInteractor(repository)
+        presenter = PresenterMain(case)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,6 +34,7 @@ class MainFragment : Fragment(), ViewMain {
     }
 
     override fun onDestroy() {
+        presenter.unsubscribe()
         presenter.detachView()
 
         super.onDestroy()

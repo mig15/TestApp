@@ -6,7 +6,7 @@ import com.android.developer.testapp.domain.entity.MappingResponse
 import com.android.developer.testapp.presentation.adapter.recycler.ItemType
 import java.lang.RuntimeException
 
-class mapper {
+class Mapper {
 
     fun transform(response: MainResponse): MappingResponse {
         val mappingResponse = MappingResponse(response.totalItems)

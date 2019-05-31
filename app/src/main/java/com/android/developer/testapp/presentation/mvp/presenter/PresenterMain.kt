@@ -1,6 +1,5 @@
 package com.android.developer.testapp.presentation.mvp.presenter
 
-import com.android.developer.testapp.common.Constants
 import com.android.developer.testapp.common.utils.logcat
 import com.android.developer.testapp.domain.entity.MappingResponse
 import com.android.developer.testapp.domain.interactor.MainInteractor
@@ -29,16 +28,7 @@ class PresenterMain(private val case: MainInteractor) : BasePresenter<ViewMain>(
 
         override fun onNext(t: MappingResponse) {
             logcat("size = ${t.items.size}")
-            for (item in t.items) {
-                when (item.getType()) {
-                    Constants.TYPE_TEXT -> {
-                        item as MappingResponse.Text
-                    }
-                    Constants.TYPE_IMAGE -> {
-                        item as MappingResponse.Image
-                    }
-                }
-            }
+            getView()?.notifyData(t.items)
         }
 
         override fun onError(e: Throwable) {

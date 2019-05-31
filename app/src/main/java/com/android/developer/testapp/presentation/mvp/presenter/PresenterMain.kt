@@ -1,5 +1,6 @@
 package com.android.developer.testapp.presentation.mvp.presenter
 
+import com.android.developer.testapp.common.utils.logcat
 import com.android.developer.testapp.domain.entity.MappingResponse
 import com.android.developer.testapp.domain.interactor.MainInteractor
 import com.android.developer.testapp.domain.interactor.base.DefaultObserver
@@ -44,6 +45,7 @@ class PresenterMain(private val case: MainInteractor) : BasePresenter<ViewMain>(
         }
 
         override fun onError(e: Throwable) {
+            logcat("$e")
             getView()?.showMessage("Ой, что-то пошло не так")
             wasRequest = false
         }
